@@ -1,0 +1,25 @@
+Name TestDetector
+Version 0.0
+
+SurroundingSphere 200.0  0.0  0.0  0.0  200.0
+
+#Include Comp_materials.geo
+Include $(MEGALIB)/resource/examples/geomega/materials/Materials.geo
+#Include SiStripDetector.geo
+#Include SiStripDetector.det
+Trigger TN01
+TN01.Veto false
+TN01.TriggerByDetector true
+TN01.DetectorType Voxel3D 1
+Include CompDetectors.geo
+
+Volume World
+World.Material Vacuum
+World.Visibility 0
+World.Color 0
+World.Shape BRIK 300. 300. 300.
+World.Mother 0
+
+SiStripDetector.Copy hermes
+hermes.Position  0.  0.  10.
+hermes.Mother World

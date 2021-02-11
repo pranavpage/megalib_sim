@@ -1,0 +1,23 @@
+#600 keV mono test simulation
+
+
+Version                  1
+Geometry                $(MEGALIB)/mycodes/new_test.geo.setup
+
+
+PhysicsListEM            LivermorePol
+
+
+StoreSimulationInfo      all
+
+
+Run SpaceSim
+SpaceSim.FileName        Mono_600
+SpaceSim.Time            50.0
+
+
+SpaceSim.Source mono600
+mono600.ParticleType        1
+mono600.Beam                FarFieldPointSource 0.0 0.0
+mono600.Spectrum            Mono 600
+mono600.Flux                20.0
