@@ -3,7 +3,7 @@
 
 %%Note: later SIPMT is to be used with NaI, for which follow (most probably)
 
-
+Constant N_Voxel 80.0
 %
 Voxel3D                         CZTDetector
 CZTDetector.SensitiveVolume     Scatterer
@@ -15,10 +15,10 @@ CZTDetector.DetectorVolume      Scatterer
 
 
 CZTDetector.StructuralOffset    0.0   0.0   0.0
-CZTDetector.StructuralPitch     0.5   0.5   0.0
+CZTDetector.StructuralPitch     0.0   0.0   0.0
 
 CZTDetector.Offset              0.0   0.0    0.0
-CZTDetector.VoxelNumber         40.0  40.0  1.0
+CZTDetector.VoxelNumber         N_Voxel     N_Voxel      1.0
 
 CZTDetector.EnergyResolution  Gauss      14        14     1.15
 CZTDetector.EnergyResolution  Gauss      60        60     1.26

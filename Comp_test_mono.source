@@ -2,7 +2,7 @@
 
 
 Version                  1
-Geometry                $(MEGALIB)/mycodes/new_test.geo.setup
+Geometry                $(MEGALIB)/mycodes/CZT_NaI.geo.setup
 
 
 PhysicsListEM            LivermorePol
@@ -12,7 +12,7 @@ StoreSimulationInfo      all
 
 
 Run SpaceSim
-SpaceSim.FileName        Mono_600
+SpaceSim.FileName        Mono_600_2.0
 SpaceSim.Time            50.0
 
 
