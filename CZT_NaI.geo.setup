@@ -1,0 +1,35 @@
+Name TestGeo
+Version 1.0
+
+SurroundingSphere 50.0 0.0 0.0 0.0 50.0
+Include Comp_materials.geo
+
+Volume World
+World.Material Vacuum
+World.Visibility 0
+World.Color 0
+World.Shape BRIK 100.0 100.0 100.0
+World.Mother 0
+
+Constant D1 0.25
+Constant D2 1.0
+Constant Gap 10.0
+Constant Z_Sc {Gap+(D2+D1)*0.5}
+
+Volume Scatterer
+Scatterer.Material CZT
+Scatterer.Color 2
+Scatterer.Visibility 1
+Scatterer.Shape BRIK 10.0 10.0 D1
+Scatterer.Position 0.0 0.0 Z_Sc
+Scatterer.Mother World
+
+Volume Absorber
+Absorber.Material NaI
+Absorber.Color 2
+Absorber.Visibility 1
+Absorber.Shape BRIK 10.0 10.0 D2
+Absorber.Position 0.0 0.0 0.0
+Absorber.Mother World
+
+Include CompDetectorProperties.geo
