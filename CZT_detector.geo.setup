@@ -19,11 +19,12 @@ Constant XNaI_box_POS 0.0
 Constant YNaI_box_POS 0.0
 Constant ZNaI_box_POS 0.0
 
-Constant ZGap 6.075 // distance between lower surface of CZT and upper surface of NaI
+Constant ZGap 6.075 // distance between lower surface of CZT and upper surface of NaI : originally 6.075
 
 Constant XCZT_box_DIM 15.624
 Constant YCZT_box_DIM 15.624
-Constant ZCZT_box_DIM 0.25
+//Constant ZCZT_box_DIM 0.25
+Constant ZCZT_box_DIM 0.5
 
 Constant XCZT_box_POS 0.0
 Constant YCZT_box_POS 0.0
@@ -60,7 +61,8 @@ Constant YCZT_N 8
 
 Constant XMOD_DIM 1.953
 Constant YMOD_DIM 1.953
-Constant ZMOD_DIM 0.25
+//Constant ZMOD_DIM 0.25
+Constant ZMOD_DIM 0.5
 //Each Module to be placed at XMOD, YMOD, ZMOD
 Volume CZT_module
 CZT_module.Material CZT
