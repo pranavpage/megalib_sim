@@ -1,0 +1,72 @@
+Type      tra
+Version   1
+Geometry  /media/pranav/page/Project_Daksha/MEGALIB_PARAM/megalib/mycodes/CZT_detector.geo.setup
+
+Date      2021-02-24 23:40:26
+MEGAlib   3.02.01
+
+EN
+
+TE 100.000000000
+
+
+FT START
+
+---------------------------------------------------------------------------
+
+# Tracked events file options
+# Date 2021-02-24 23:40:32
+# OriginalFile /media/pranav/page/Project_Daksha/MEGALIB_PARAM/megalib/mycodes/sim_results/CZT_NaI_mono_600.inc4.id1.sim
+# GeometryFile /media/pranav/page/Project_Daksha/MEGALIB_PARAM/megalib/mycodes/CZT_detector.geo.setup
+# 
+# Clusterizer options:
+# 
+# Clusterizing by adjacent voxels
+# Level: 2
+# Sigma: -1
+# 
+# 
+# Tracking - Rank options:
+# 
+# Search MIPs:                  1
+# Search Pairs:                 1
+# Search Comptons:              1
+# Max. number of ambiguities:   5
+# Max. layer jump Compton:      2
+# Number of sequences to keep:  1
+# Reject pure ambiguities:      0
+# 
+# 
+# CSR Chi-Square options:
+# 
+# Test statistics:                 0
+# QualityFactorMin:                0
+# QualityFactorMax:                1000
+# MaxNInteractions:                7
+# UseComptelTypeEvents:            1
+# AssumeD1First:                   0
+# UndecidedHandling:               4
+# GuaranteeStartD1:                0
+# RejectOneDetectorTypeOnlyEvents: 0
+# 
+
+----------------------------------------------------------------------------
+
+
+Trigger statistics:
+  Not triggered events: ..................................  18048
+  Number of vetoed events: ...............................      0
+  Number of triggered events: ............................      0
+
+
+----------------------------------------------------------------------------
+
+Event statistics for all triggered (!) events:
+
+  No events available
+
+----------------------------------------------------------------------------
+
+
+FT STOP
+

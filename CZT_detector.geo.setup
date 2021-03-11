@@ -1,4 +1,4 @@
-NaI_detectorNaI// setup for CZTI with 16x16 detectors
+// setup for CZTI with 16x16 detectors
 Name CZT_detector
 Version 0.0
 SurroundingSphere 200.0  0.0  0.0  0.0  200.0
@@ -32,7 +32,7 @@ Constant ZCZT_box_POS {ZCZT_box_DIM + ZNaI_box_DIM + ZGap}
 
 Volume CZT_box
 CZT_box.Material Vacuum
-CZT_box.Visibility 1
+CZT_box.Visibility 0
 CZT_box.Color 4
 CZT_box.Shape BRIK XCZT_box_DIM YCZT_box_DIM ZCZT_box_DIM
 CZT_box.Position XCZT_box_POS YCZT_box_POS ZCZT_box_POS
@@ -56,8 +56,8 @@ NaI_detector.Position XNaI_box_POS YNaI_box_POS ZNaI_box_POS
 NaI_detector.Mother NaI_box
 
 //All detector modules to be placed in CZT_box
-Constant XCZT_N 8
-Constant YCZT_N 8
+Constant XCZT_N 4
+Constant YCZT_N 5
 
 Constant XMOD_DIM 1.953
 Constant YMOD_DIM 1.953
@@ -70,17 +70,39 @@ CZT_module.Color 2
 CZT_module.Visibility 1
 CZT_module.Shape BRIK XMOD_DIM YMOD_DIM ZMOD_DIM
 
-Constant XPOS_MAX {XMOD_DIM*{XCZT_N-2}}
-Constant YPOS_MAX {XMOD_DIM*{YCZT_N-2}}
-Constant XCZT_module_gap {XMOD_DIM*2}
-Constant YCZT_module_gap {YMOD_DIM*2}
+Constant XPCB_DIM 1.9
+Constant YPCB_DIM 1.9
+Constant ZPCB_DIM 0.2 //0.078, 0.157, 0.236 are standard thicknesses
+Constant XPCB_POS 0
+Constant YPCB_POS 0
+Constant ZPCB_CZT_gap 0.4 //gap between lower surface of CZT and upper surface of PCB
+Constant ZPCB_POS {ZCZT_box_POS-ZMOD_DIM-ZPCB_CZT_gap}
+
+Volume CZT_electronics // a small PCB associated with every module
+CZT_electronics.Material PCB
+CZT_electronics.Color 3
+CZT_electronics.Visibility 1
+CZT_electronics.Shape BRIK XPCB_DIM YPCB_DIM ZPCB_DIM
+
+Constant XCZT_gap 0.4
+Constant YCZT_gap 0.4
+
+Constant XPOS_MAX {XMOD_DIM*{XCZT_N-2}+XCZT_gap*{XCZT_N-1}/2}
+Constant YPOS_MAX {XMOD_DIM*{YCZT_N-2}+YCZT_gap*{YCZT_N-1}/2}
+Constant XCZT_module_gap {XMOD_DIM*2+XCZT_gap}
+Constant YCZT_module_gap {YMOD_DIM*2+YCZT_gap}
 //Introduce gaps in modules later
 For X XCZT_N XPOS_MAX {-XCZT_module_gap}
   For Y YCZT_N YPOS_MAX {-YCZT_module_gap}
     CZT_module.Copy CZT_module_%X_%Y
+    CZT_electronics.Copy CZT_electronics_%X_%Y
     CZT_module_%X_%Y.Position $X $Y ZCZT_box_POS
+    CZT_electronics_%X_%Y.Position $X $Y ZPCB_POS
     CZT_module_%X_%Y.Mother World
+    CZT_electronics_%X_%Y.Mother World
   Done
 Done
+//Including the PCB board below the detectors
+
 
 Include CZT_module_properties.geo
