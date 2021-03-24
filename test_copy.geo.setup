@@ -51,7 +51,7 @@ Constant ZCZT_module_box {ZMOD_DIM+ZPCB_CZT_gap/2+ZPCB_DIM}
 Volume CZT_module_box
 CZT_module_box.Material Vacuum
 CZT_module_box.Color 1
-CZT_module_box.Visibility 1
+CZT_module_box.Visibility 0
 CZT_module_box.Shape BRIK XMOD_DIM YMOD_DIM ZCZT_module_box
 
 Volume CZT_module

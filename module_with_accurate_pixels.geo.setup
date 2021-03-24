@@ -1,0 +1,95 @@
+// making a detector module with 9 sub volumes
+Version 0.0
+SurroundingSphere 200.0  0.0  0.0  0.0  200.0
+
+Include Comp_materials.geo
+
+Volume World
+World.Material Vacuum
+World.Visibility 0
+World.Color 0
+World.Shape BRIK 300. 300. 300.
+World.Mother 0
+
+Constant P1 0.246
+Constant P2 0.231
+//Dimensions of module
+Constant XMOD_DIM {7*P1+1*P2}
+Constant YMOD_DIM {7*P1+1*P2}
+Constant ZMOD_DIM 0.25
+//Position of box
+Constant XCZT_box_POS 0.0
+Constant YCZT_box_POS 0.0
+Constant ZCZT_box_POS 0.0   //
+
+Constant XPCB_DIM 1.9
+Constant YPCB_DIM 1.9
+Constant ZPCB_DIM 0.2 //0.078, 0.157, 0.236 are standard thicknesses
+Constant XPCB_POS 0
+Constant YPCB_POS 0
+Constant ZPCB_CZT_gap 0.4 //gap between lower surface of CZT and upper surface of PCB
+Constant ZPCB_POS {ZCZT_box_POS-ZMOD_DIM-ZPCB_CZT_gap}
+Constant ZCZT_module_box {ZMOD_DIM+ZPCB_CZT_gap/2+ZPCB_DIM}
+
+Volume CZT_module_box
+CZT_module_box.Material Vacuum
+CZT_module_box.Color 1
+CZT_module_box.Visibility 0
+CZT_module_box.Shape BRIK XMOD_DIM YMOD_DIM ZCZT_module_box
+CZT_module_box.Mother World
+
+Volume CZT_central
+CZT_central.Material CZT
+CZT_central.Color 2
+CZT_central.Visibility 1
+CZT_central.Shape BRIK {7*P1} {7*P1} ZMOD_DIM
+CZT_central.Position 0 0 {ZPCB_DIM+ZPCB_CZT_gap/2}
+CZT_central.Mother CZT_module_box
+
+Volume CZT_side
+CZT_side.Material CZT
+CZT_side.Color 3
+CZT_side.Visibility 1
+CZT_side.Shape BRIK {P2/2} {P1*7} ZMOD_DIM
+
+Volume CZT_corner
+CZT_corner.Material CZT
+CZT_corner.Color 4
+CZT_corner.Visibility 1
+CZT_corner.Shape BRIK {P2/2} {P2/2} ZMOD_DIM
+
+CZT_side.Copy CZT_side_1
+CZT_side_1.Position {7*P1+P2/2} 0 {ZPCB_DIM+ZPCB_CZT_gap/2}
+CZT_side_1.Rotation 0 0 0
+CZT_side_1.Mother CZT_module_box
+
+CZT_side.Copy CZT_side_2
+CZT_side_2.Position 0 {7*P1+P2/2} {ZPCB_DIM+ZPCB_CZT_gap/2}
+CZT_side_2.Rotation 0 0 90
+CZT_side_2.Mother CZT_module_box
+
+CZT_side.Copy CZT_side_3
+CZT_side_3.Position 0 {-7*P1-P2/2} {ZPCB_DIM+ZPCB_CZT_gap/2}
+CZT_side_3.Rotation 0 0 90
+CZT_side_3.Mother CZT_module_box
+
+CZT_side.Copy CZT_side_4
+CZT_side_4.Position {-7*P1-P2/2} 0 {ZPCB_DIM+ZPCB_CZT_gap/2}
+CZT_side_4.Rotation 0 0 0
+CZT_side_4.Mother CZT_module_box
+
+CZT_corner.Copy CZT_corner_1
+CZT_corner_1.Position {7*P1+P2/2} {7*P1+P2/2} {ZPCB_DIM+ZPCB_CZT_gap/2}
+CZT_corner_1.Mother CZT_module_box
+
+CZT_corner.Copy CZT_corner_2
+CZT_corner_2.Position {-7*P1-P2/2} {7*P1+P2/2} {ZPCB_DIM+ZPCB_CZT_gap/2}
+CZT_corner_2.Mother CZT_module_box
+
+CZT_corner.Copy CZT_corner_3
+CZT_corner_3.Position {-7*P1-P2/2} {-7*P1-P2/2} {ZPCB_DIM+ZPCB_CZT_gap/2}
+CZT_corner_3.Mother CZT_module_box
+
+CZT_corner.Copy CZT_corner_4
+CZT_corner_4.Position {7*P1+P2/2} {-7*P1-P2/2} {ZPCB_DIM+ZPCB_CZT_gap/2}
+CZT_corner_4.Mother CZT_module_box
