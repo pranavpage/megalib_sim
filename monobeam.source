@@ -1,0 +1,28 @@
+# This example shows how to use some of the beams
+# The detector is a high resolution 2D pixel detector, to enable debugging the beam profile
+# Check your beam profile with revans spatial hit distribution
+
+
+# Global parameters:
+Version               1
+Geometry              $(MEGALIB)/mycodes/module_with_accurate_pixels.geo.setup
+
+# Physics list
+PhysicsListEM                        LivermorePol
+
+# Output formats
+StoreSimulationInfo                  all
+
+
+
+# Run 1: A homogeneous beam
+
+Run MyHomogeneousBeam
+MyHomogeneousBeam.FileName                      H_beam_cylindrical
+MyHomogeneousBeam.Time                          250.0
+
+MyHomogeneousBeam.Source MyHomogeneousBeamSource
+MyHomogeneousBeamSource.ParticleType            1
+MyHomogeneousBeamSource.Beam                    HomogeneousBeam  0 0 20  0 0 -1  2.76196
+MyHomogeneousBeamSource.Spectrum                Mono 60.0
+MyHomogeneousBeamSource.Flux                    1000.0

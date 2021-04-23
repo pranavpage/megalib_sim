@@ -2,7 +2,7 @@
 
 
 Version                  1
-Geometry                $(MEGALIB)/mycodes/CZT_detector.geo.setup
+Geometry                $(MEGALIB)/mycodes/module_with_accurate_pixels.geo.setup
 
 
 PhysicsListEM            LivermorePol
