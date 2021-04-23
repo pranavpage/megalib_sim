@@ -1,0 +1,20 @@
+
+# Global parameters:
+Version               1
+Geometry              $(MEGALIB)/mycodes/two_detector_experimental.geo.setup
+
+# Physics list
+PhysicsListEM                        LivermorePol
+
+# Output formats
+StoreSimulationInfo                  all
+
+Run PointSim
+PointSim.FileName PointSourceExperiment
+PointSim.Time 50.0
+
+PointSim.Source Point100
+Point100.ParticleType 1
+Point100.Spectrum Mono 100
+Point100.Beam Point 0 0 -25
+Point100.Flux 1000

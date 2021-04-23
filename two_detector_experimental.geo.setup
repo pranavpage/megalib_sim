@@ -1,0 +1,49 @@
+Version 0.0
+SurroundingSphere 200.0  0.0  0.0  0.0  200.0
+
+Include Comp_materials.geo
+Volume World
+World.Material Vacuum
+World.Visibility 0
+World.Color 0
+World.Shape BRIK 300. 300. 300.
+World.Mother 0
+Include module_prefinal.geo
+Include module_with_accurate_pixels_detector_properties.geo
+
+Constant XAl_BOX_DIM 30.0
+Constant YAl_BOX_DIM 30.0
+Constant ZAl_BOX_DIM 30.0
+Constant BOX_thickness 0.25
+
+Trigger T
+T.Veto false
+T.TriggerByDetector true
+T.DetectorType Voxel3D 1
+
+Shape BRIK OutBox
+OutBox.Parameters {XAl_BOX_DIM+BOX_thickness} {YAl_BOX_DIM+BOX_thickness} {ZAl_BOX_DIM+BOX_thickness}
+
+Shape BRIK InBox
+InBox.Parameters XAl_BOX_DIM YAl_BOX_DIM ZAl_BOX_DIM
+
+Orientation BoxOrientation
+BoxOrientation.Position 0 0 0
+BoxOrientation.Rotation 0 0 0
+
+Volume Al_BOX
+Al_BOX.Material Aluminium
+Al_BOX.Visibility 1
+Al_BOX.Color 3
+Al_BOX.Shape Subtraction OutBox InBox BoxOrientation
+#Al_BOX.Position 0 0 0
+Al_BOX.Mother World
+
+CZT_module_box.Copy Scatterer
+Scatterer.Position 0 0 -ZAl_BOX_DIM
+Scatterer.Mother Al_BOX
+
+CZT_module_box.Copy Absorber
+Absorber.Position XAl_BOX_DIM 0 10
+Absorber.Rotation 0 -90 0
+Absorber.Mother Al_BOX

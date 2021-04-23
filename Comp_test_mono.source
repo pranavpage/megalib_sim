@@ -2,7 +2,7 @@
 
 
 Version                  1
-Geometry                $(MEGALIB)/mycodes/module_with_accurate_pixels.geo.setup
+Geometry                $(MEGALIB)/mycodes/two_detector_experimental.geo.setup
 
 
 PhysicsListEM            LivermorePol
