@@ -31,19 +31,40 @@ Orientation BoxOrientation
 BoxOrientation.Position 0 0 0
 BoxOrientation.Rotation 0 0 0
 
-Volume Al_BOX
-Al_BOX.Material Aluminium
-Al_BOX.Visibility 1
-Al_BOX.Color 3
-Al_BOX.Shape Subtraction OutBox InBox BoxOrientation
+#Volume Al_BOX
+#Al_BOX.Material Aluminium
+#Al_BOX.Visibility 1
+#Al_BOX.Color 30
+#Al_BOX.Shape Subtraction OutBox InBox BoxOrientation
 #Al_BOX.Position 0 0 0
-Al_BOX.Mother World
+#Al_BOX.Mother World
+#Something going wrong when Al box added, consider adding sheets manually.
+
+Volume Al_SHEET
+Al_SHEET.Material Aluminium
+Al_SHEET.Visibility 1
+Al_SHEET.Shape BRIK XAl_BOX_DIM YAl_BOX_DIM {BOX_thickness/2}
+
+Al_SHEET.Copy Al_SHEET_1
+Al_SHEET_1.Position 0 0 {-ZAl_BOX_DIM-BOX_thickness/2}
+Al_SHEET_1.Rotation 0 0 0
+Al_SHEET_1.Mother World
+
+Al_SHEET.Copy Al_SHEET_2
+Al_SHEET_2.Position {XAl_BOX_DIM+BOX_thickness/2} 0 0
+Al_SHEET_2.Rotation 0 -90 0
+Al_SHEET_2.Mother World
+
+Al_SHEET.Copy Al_SHEET_3
+Al_SHEET_3.Position 0 {YAl_BOX_DIM+BOX_thickness/2} 0
+Al_SHEET_3.Rotation -90 0 0
+Al_SHEET_3.Mother World
 
 CZT_module_box.Copy Scatterer
-Scatterer.Position 0 0 -ZAl_BOX_DIM
-Scatterer.Mother Al_BOX
+Scatterer.Position 0 0 {-ZAl_BOX_DIM}
+Scatterer.Mother World
 
 CZT_module_box.Copy Absorber
-Absorber.Position XAl_BOX_DIM 0 10
+Absorber.Position XAl_BOX_DIM 0 {-ZAl_BOX_DIM+5}
 Absorber.Rotation 0 -90 0
-Absorber.Mother Al_BOX
+Absorber.Mother World
