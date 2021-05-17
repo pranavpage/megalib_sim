@@ -20,6 +20,12 @@ CsI.Component                   Cs  1
 CsI.Component                   I   1
 
 
+Material PMTPlastic
+PMTPlastic.Density                     1.0
+PMTPlastic.Component               H   8
+PMTPlastic.Component               C   5
+PMTPlastic.Component               O   2
+
 
 Material NaI
 NaI.Density                     3.67

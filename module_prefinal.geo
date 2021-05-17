@@ -1,4 +1,4 @@
-
+#contains description of CZT_module_box
 Constant P1 0.246
 Constant P2 0.231
 //Dimensions of module
@@ -9,7 +9,7 @@ Constant ZMOD_DIM 0.25
 Constant XCZT_box_POS 0.0
 Constant YCZT_box_POS 0.0
 Constant ZCZT_box_POS 0.0
-Constant ZCZT_box_DIM 4.0
+Constant ZCZT_box_DIM 1.28
 
 Volume CZT_module_box
 CZT_module_box.Material Vacuum
@@ -19,14 +19,14 @@ CZT_module_box.Shape BRIK XMOD_DIM YMOD_DIM ZCZT_box_DIM
 
 Constant Z_offset {1.88+0.1/2}
 
-Volume PCB_chip
-PCB_chip.Material PCB
-PCB_chip.Color 1
-PCB_chip.Visibility 1
-PCB_chip.Shape BRIK 1.953 1.968 0.1
-PCB_chip.Position 0 -0.015 {-1.88+Z_offset}
-PCB_chip.Rotation 0 0 0
-PCB_chip.Mother CZT_module_box
+#Volume PCB_chip
+#PCB_chip.Material PCB
+#PCB_chip.Color 1
+#PCB_chip.Visibility 1
+#PCB_chip.Shape BRIK 1.953 1.968 0.1
+#PCB_chip.Position 0 -0.015 {-1.88+Z_offset}
+#PCB_chip.Rotation 0 0 0
+#PCB_chip.Mother CZT_module_box
 
 Volume CZT_central
 CZT_central.Material CZT
@@ -36,29 +36,119 @@ CZT_central.Shape BRIK {7*P1} {7*P1} ZMOD_DIM
 CZT_central.Position 0 0 {0+Z_offset}
 CZT_central.Mother CZT_module_box
 
-Volume CZT_support
-CZT_support.Material PCB
-CZT_support.Color 6
-CZT_support.Visibility 1
-CZT_support.Shape BRIK XMOD_DIM YMOD_DIM 0.7015
-CZT_support.Position 0 0 {-0.9515+Z_offset}
-CZT_support.Mother CZT_module_box
+Constant ZCZT_support_POS -3
 
+Shape BRIK CZT_support_whole
+CZT_support_whole.Parameters XMOD_DIM YMOD_DIM 0.5375
+
+Shape Tube Hole
+Hole.Parameters 0 0.21 0.539 0 360
+
+Orientation HoleOrientation
+HoleOrientation.Position 1.15 1.625 0
+HoleOrientation.Rotation 0 0 0
+
+Shape Subtraction CZT_support_without_hole
+CZT_support_without_hole.Parameters CZT_support_whole Hole HoleOrientation
+
+Shape BRIK RectHole
+RectHole.Parameters 0.2 0.85 0.5376
+
+Orientation RectHoleOrientation_1
+RectHoleOrientation_1.Position 1.36 -0.8 0
+RectHoleOrientation_1.Rotation 0 0 0
+
+Orientation RectHoleOrientation_2
+RectHoleOrientation_2.Position -0.54 0.8 0
+RectHoleOrientation_2.Rotation 0 0 0
+
+Shape Subtraction CZT_support_without_hole_2
+CZT_support_without_hole_2.Parameters CZT_support_without_hole RectHole RectHoleOrientation_1
+
+Shape Subtraction CZT_support_without_hole_3
+CZT_support_without_hole_3.Parameters CZT_support_without_hole_2 RectHole RectHoleOrientation_2
+
+Shape BRIK RectHoleCentral
+RectHoleCentral.Parameters 0.375 0.575 0.54
+
+Orientation RectHoleCentralOrientation
+RectHoleCentralOrientation.Position 0.41 0.001 0
+
+Shape Subtraction CZT_support_without_hole_4
+CZT_support_without_hole_4.Parameters CZT_support_without_hole_3 RectHoleCentral RectHoleCentralOrientation
+
+Volume CZT_support_1
+CZT_support_1.Material PMTPlastic // VT Plastic
+CZT_support_1.Color 6
+CZT_support_1.Visibility 1
+CZT_support_1.Shape CZT_support_without_hole_4
+CZT_support_1.Position 0 0 ZCZT_support_POS
+CZT_support_1.Mother CZT_module_box
+//CZT support done
+
+//ASIC Base
+Shape BRIK AsicBase
+AsicBase.Parameters XMOD_DIM YMOD_DIM 0.125
+
+Shape Tube AsicBaseHole_2
+AsicBaseHole_2.Parameters 0 0.21 0.125 0 360
+
+Orientation AsicBaseHole_2Orientation
+AsicBaseHole_2Orientation.Position 1.15 1.625 0
+AsicBaseHole_2Orientation.Rotation 0 0 0
+
+Shape Subtraction AsicBaseWithHole_2
+AsicBaseWithHole_2.Parameters AsicBase AsicBaseHole_2 AsicBaseHole_2Orientation
+
+Constant Z_ASIC_BASE_POS -0.5
+Volume ASIC_BASE
+ASIC_BASE.Material PMTPlastic // Mylar actually
+ASIC_BASE.Color 4
+ASIC_BASE.Visibility 1
+ASIC_BASE.Shape AsicBaseWithHole_2
+ASIC_BASE.Position 0 0 Z_ASIC_BASE_POS
+ASIC_BASE.Mother CZT_module_box
+
+//ASIC Stand
+Shape BRIK AsicStand
+AsicStand.Parameters 0.325 0.525 0.9125
+
+Shape Tube AsicStandHole
+AsicStandHole.Parameters 0 0.15 0.6 0 360
+
+Orientation AsicStandHoleOrientation
+AsicStandHoleOrientation.Position 0 0 -0.875
+AsicStandHoleOrientation.Rotation 0 0 0
+
+Shape Subtraction AsicStandWithHole_1
+AsicStandWithHole_1.Parameters AsicStand AsicStandHole AsicStandHoleOrientation
+
+Volume ASIC_STAND
+ASIC_STAND.Material PMTPlastic // Mylar
+ASIC_STAND.Color 4
+ASIC_STAND.Visibility 1
+ASIC_STAND.Shape AsicStandWithHole_1
+ASIC_STAND.Position 0.41 -0.01 {-1.0375+Z_ASIC_BASE_POS}
+ASIC_STAND.Mother CZT_module_box
+
+//
+
+//CZT panels
 Volume CZT_side
 CZT_side.Material CZT
-CZT_side.Color 3
+CZT_side.Color 2
 CZT_side.Visibility 1
 CZT_side.Shape BRIK {P2/2} {P1*7} ZMOD_DIM
 
 Volume CZT_corner
 CZT_corner.Material CZT
-CZT_corner.Color 4
+CZT_corner.Color 2
 CZT_corner.Visibility 1
 CZT_corner.Shape BRIK {P2/2} {P2/2} ZMOD_DIM
 
 Volume CZT_side_1
 CZT_side_1.Material CZT
-CZT_side_1.Color 3
+CZT_side_1.Color 2
 CZT_side_1.Visibility 1
 CZT_side_1.Shape BRIK {P2/2} {P1*7} ZMOD_DIM
 CZT_side_1.Position {7*P1+P2/2} 0 {0+Z_offset}
@@ -67,7 +157,7 @@ CZT_side_1.Mother CZT_module_box
 
 Volume CZT_side_2
 CZT_side_2.Material CZT
-CZT_side_2.Color 3
+CZT_side_2.Color 2
 CZT_side_2.Visibility 1
 CZT_side_2.Shape BRIK {P1*7} {P2/2} ZMOD_DIM
 CZT_side_2.Position 0 {7*P1+P2/2} {0+Z_offset}
@@ -76,7 +166,7 @@ CZT_side_2.Mother CZT_module_box
 
 Volume CZT_side_3
 CZT_side_3.Material CZT
-CZT_side_3.Color 3
+CZT_side_3.Color 2
 CZT_side_3.Visibility 1
 CZT_side_3.Shape BRIK {P2/2} {P1*7} ZMOD_DIM
 CZT_side_3.Position {-7*P1-P2/2} 0 {0+Z_offset}
@@ -85,7 +175,7 @@ CZT_side_3.Mother CZT_module_box
 
 Volume CZT_side_4
 CZT_side_4.Material CZT
-CZT_side_4.Color 3
+CZT_side_4.Color 2
 CZT_side_4.Visibility 1
 CZT_side_4.Shape BRIK  {P1*7} {P2/2} ZMOD_DIM
 CZT_side_4.Position 0 {-7*P1-P2/2}  {0+Z_offset}
@@ -94,7 +184,7 @@ CZT_side_4.Mother CZT_module_box
 
 Volume CZT_corner_1
 CZT_corner_1.Material CZT
-CZT_corner_1.Color 4
+CZT_corner_1.Color 2
 CZT_corner_1.Visibility 1
 CZT_corner_1.Shape BRIK {P2/2} {P2/2} ZMOD_DIM
 CZT_corner_1.Position {7*P1+P2/2} {7*P1+P2/2} {0+Z_offset}
@@ -102,7 +192,7 @@ CZT_corner_1.Mother CZT_module_box
 
 Volume CZT_corner_2
 CZT_corner_2.Material CZT
-CZT_corner_2.Color 4
+CZT_corner_2.Color 2
 CZT_corner_2.Visibility 1
 CZT_corner_2.Shape BRIK {P2/2} {P2/2} ZMOD_DIM
 CZT_corner_2.Position {-7*P1-P2/2} {7*P1+P2/2} {0+Z_offset}
@@ -110,7 +200,7 @@ CZT_corner_2.Mother CZT_module_box
 
 Volume CZT_corner_3
 CZT_corner_3.Material CZT
-CZT_corner_3.Color 4
+CZT_corner_3.Color 2
 CZT_corner_3.Visibility 1
 CZT_corner_3.Shape BRIK {P2/2} {P2/2} ZMOD_DIM
 CZT_corner_3.Position {-7*P1-P2/2} {-7*P1-P2/2} {0+Z_offset}
@@ -118,7 +208,7 @@ CZT_corner_3.Mother CZT_module_box
 
 Volume CZT_corner_4
 CZT_corner_4.Material CZT
-CZT_corner_4.Color 4
+CZT_corner_4.Color 2
 CZT_corner_4.Visibility 1
 CZT_corner_4.Shape BRIK {P2/2} {P2/2} ZMOD_DIM
 CZT_corner_4.Position {7*P1+P2/2} {-7*P1-P2/2} {0+Z_offset}
