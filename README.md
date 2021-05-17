@@ -9,5 +9,5 @@ Relevant images are included in sim_results
 1. Add the 140mm x 106mm x 38mm box
 2. Modify PCB to be 80mm x 80mm
 3. Define the source (currently point source, but flux is to be decided)
-
+4. Add the two ports and a generic PCB
 P.S. Latest setup can be seen in sim_results/two_detector_experimental/
