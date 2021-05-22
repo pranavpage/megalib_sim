@@ -15,18 +15,9 @@ Volume CZT_module_box
 CZT_module_box.Material Vacuum
 CZT_module_box.Color 1
 CZT_module_box.Visibility 0
-CZT_module_box.Shape BRIK XMOD_DIM YMOD_DIM ZCZT_box_DIM
+CZT_module_box.Shape BRIK XMOD_DIM YMOD_DIM 6
 
 Constant Z_offset {1.88+0.1/2}
-
-#Volume PCB_chip
-#PCB_chip.Material PCB
-#PCB_chip.Color 1
-#PCB_chip.Visibility 1
-#PCB_chip.Shape BRIK 1.953 1.968 0.1
-#PCB_chip.Position 0 -0.015 {-1.88+Z_offset}
-#PCB_chip.Rotation 0 0 0
-#PCB_chip.Mother CZT_module_box
 
 Volume CZT_central
 CZT_central.Material CZT
@@ -131,7 +122,81 @@ ASIC_STAND.Shape AsicStandWithHole_1
 ASIC_STAND.Position 0.41 -0.01 {-1.0375+Z_ASIC_BASE_POS}
 ASIC_STAND.Mother CZT_module_box
 
-//
+//ASIC
+Constant Z_PCB_DIM 0.125
+Volume PCB_chip
+PCB_chip.Material CircuitBoard
+PCB_chip.Color 1
+PCB_chip.Visibility 1
+PCB_chip.Shape BRIK XMOD_DIM YMOD_DIM Z_PCB_DIM
+PCB_chip.Position 0 0 -0.25
+PCB_chip.Mother CZT_module_box
+//Connectors
+Shape BRIK ConnectorBase
+ConnectorBase.Parameters 0.1524 0.65405 0.2095
+
+Shape BRIK ConnectorScrews
+ConnectorScrews.Parameters 0.0635 0.06985 0.1775
+
+Orientation ConnectorScrewOrientation1
+ConnectorScrewOrientation1.Position 0 0.7239 -0.14573
+ConnectorScrewOrientation1.Rotation 0 0 0
+
+Shape Union Connector_1
+Connector_1.Parameters ConnectorBase ConnectorScrews ConnectorScrewOrientation1
+
+Orientation ConnectorScrewOrientation2
+ConnectorScrewOrientation2.Position 0 -0.7239 -0.14573
+ConnectorScrewOrientation2.Rotation 0 0 0
+
+Shape Union Connector_2
+Connector_2.Parameters Connector_1 ConnectorScrews ConnectorScrewOrientation2
+
+Shape BRIK ConnectorPins_1
+ConnectorPins_1.Parameters 0.00635 0.654 0.08128
+
+Shape BRIK ConnectorPins_2
+ConnectorPins_2.Parameters 0.0215 0.654 0.00635
+
+Orientation ConnectorPins_1Orientation1
+ConnectorPins_1Orientation1.Position 0.0588 0 -0.29083
+
+Orientation ConnectorPins_1Orientation2
+ConnectorPins_1Orientation2.Position -0.0588 0 -0.29083
+
+Shape Union Connector_3
+Connector_3.Parameters Connector_2 ConnectorPins_1 ConnectorPins_1Orientation1
+
+Shape Union Connector_4
+Connector_4.Parameters Connector_3 ConnectorPins_1 ConnectorPins_1Orientation2
+
+Orientation ConnectorPins_2Orientation1
+ConnectorPins_2Orientation1.Position 0.0215 0 -0.2159
+
+Orientation ConnectorPins_2Orientation2
+ConnectorPins_2Orientation2.Position -0.0215 0 -0.2159
+
+Shape Union Connector_5
+Connector_5.Parameters Connector_4 ConnectorPins_2 ConnectorPins_2Orientation1
+
+Shape Union Connector_6
+Connector_6.Parameters Connector_5 ConnectorPins_2 ConnectorPins_2Orientation2
+
+Volume VConnector_1
+VConnector_1.Material Aluminium
+VConnector_1.Color 7
+VConnector_1.Visibility 1
+VConnector_1.Shape Connector_6
+VConnector_1.Position 1.36 -0.8 {Z_ASIC_BASE_POS-0.2-0.14} //Offset due to overlaps and change of geometric center
+VConnector_1.Mother CZT_module_box
+
+Volume VConnector_2
+VConnector_2.Material Aluminium
+VConnector_2.Color 7
+VConnector_2.Visibility 1
+VConnector_2.Shape Connector_6
+VConnector_2.Position -0.54 0.8 {Z_ASIC_BASE_POS-0.2-0.14}
+VConnector_2.Mother CZT_module_box
 
 //CZT panels
 Volume CZT_side

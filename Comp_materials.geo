@@ -38,6 +38,19 @@ PCB.Component                   H   8
 PCB.Component                   C   5
 PCB.Component                   O   2
 
+Material CircuitBoard
+CircuitBoard.Density            1.8
+CircuitBoard.ComponentByMass    H   0.030
+CircuitBoard.ComponentByMass    C   0.174
+CircuitBoard.ComponentByMass    O   0.392
+CircuitBoard.ComponentByMass    Al   0.100
+CircuitBoard.ComponentByMass    Si   0.244
+CircuitBoard.ComponentByMass    Fe   0.010
+CircuitBoard.ComponentByMass    Cu   0.030
+CircuitBoard.ComponentByMass    Sn   0.010
+CircuitBoard.ComponentByMass    Pb   0.010
+
+
 Material Aluminium
 Aluminium.Density               2.7
 Aluminium.Component             Al  1
