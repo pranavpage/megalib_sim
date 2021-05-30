@@ -42,3 +42,4 @@ CZT_module_box.Copy Det1
 Det1.Position {-3.347+PP_box_thickness} {5.047-PP_box_thickness} {-1.9+PP_box_thickness+0.125+0.125+ZCZT_box_DIM}
 Det1.Mother Detector_box
 //slight offsets needed to make sure there are no volume overlaps
+//Make the Al box in a different .geo file
