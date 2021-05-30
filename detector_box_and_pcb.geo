@@ -37,9 +37,10 @@ Readout_PCB.Visibility 1
 Readout_PCB.Shape BRIK 4 4 0.125
 Readout_PCB.Position {-1.3+0.2} {3-0.2} {-1.9+PP_box_thickness+0.125}
 Readout_PCB.Mother Detector_box
-
+Constant X_CZT_module_in_PP_box {-3.347+PP_box_thickness}
+Constant Y_CZT_module_in_PP_box {5.047-PP_box_thickness}
 CZT_module_box.Copy Det1
-Det1.Position {-3.347+PP_box_thickness} {5.047-PP_box_thickness} {-1.9+PP_box_thickness+0.125+0.125+ZCZT_box_DIM}
+Det1.Position X_CZT_module_in_PP_box Y_CZT_module_in_PP_box {-1.9+PP_box_thickness+0.125+0.125+ZCZT_box_DIM}
 Det1.Mother Detector_box
 //slight offsets needed to make sure there are no volume overlaps
 //Make the Al box in a different .geo file
