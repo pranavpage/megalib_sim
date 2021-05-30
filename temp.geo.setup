@@ -7,8 +7,8 @@ World.Visibility 0
 World.Color 0
 World.Shape BRIK 300. 300. 300.
 World.Mother 0
-Include module_prefinal.geo
-
-CZT_module_box.Copy Test
+//Include module_prefinal.geo
+Include detector_box_and_pcb.geo
+Detector_box.Copy Test
 Test.Position 0 0 0
 Test.Mother World

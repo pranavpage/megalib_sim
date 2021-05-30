@@ -55,6 +55,11 @@ Material Aluminium
 Aluminium.Density               2.7
 Aluminium.Component             Al  1
 
+Material PP
+PP.Density                0.92
+PP.Component              C   3
+PP.Component              H   6
+
 Material active_si_recoil
 active_si_recoil.Density 2.33
 active_si_recoil.ComponentByMass 28.08 14.0 1
