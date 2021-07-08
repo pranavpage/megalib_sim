@@ -4,7 +4,7 @@ Volume World
 World.Material Vacuum
 World.Visibility 0
 World.Color 0
-World.Shape BRIK 300. 300. 300.
+World.Shape BRIK 80. 80. 80.
 World.Mother 0
 Include detector_box_and_pcb.geo
 Constant AlBox_Thickness 0.5
@@ -38,7 +38,7 @@ AlBox.Shape AlBoxFinal
 AlBox.Mother TestSpace
 
 Volume SourceBox
-SourceBox.Material Aluminium
+SourceBox.Material Vacuum
 SourceBox.Visibility 1
 SourceBox.Color 2
 SourceBox.Shape BRIK 1 1 1
@@ -47,5 +47,36 @@ SourceBox.Mother TestSpace
 
 //placing scatterer on the floor
 Detector_box.Copy Scatterer
-Scatterer.Position {-X_CZT_module_in_PP_box} {-Y_CZT_module_in_PP_box} {-Z_AlBox_Dim+ZCZT_box_DIM+AlBox_Thickness}
+Scatterer.Position {-X_CZT_module_in_PP_box} {-Y_CZT_module_in_PP_box} {-Z_AlBox_Dim+Z_PP_box_DIM+AlBox_Thickness}
 Scatterer.Mother TestSpace
+
+Detector_box.Copy Absorber1
+Absorber1.Position {-X_AlBox_Dim+AlBox_Thickness+Z_PP_box_DIM} {0+Y_CZT_module_in_PP_box} {-Z_AlBox_Dim+AlBox_Thickness+XMOD_DIM-X_CZT_module_in_PP_box+PP_box_thickness}
+Absorber1.Rotation 0 -90 180
+Absorber1.Mother TestSpace
+
+Detector_box.Copy Absorber2
+Absorber2.Position {-X_AlBox_Dim+AlBox_Thickness+Z_PP_box_DIM} {0-Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-XMOD_DIM+X_CZT_module_in_PP_box-PP_box_thickness}
+Absorber2.Rotation 0 90 0
+Absorber2.Mother TestSpace
+
+Detector_box.Copy Absorber3
+Absorber3.Position {-5+X_CZT_module_in_PP_box} {-Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-Z_PP_box_DIM}
+Absorber3.Rotation 0 180 0
+Absorber3.Mother TestSpace
+
+Detector_box.Copy Absorber4
+Absorber4.Position {+5-X_CZT_module_in_PP_box} {Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-Z_PP_box_DIM}
+Absorber4.Rotation 0 180 180
+Absorber4.Mother TestSpace
+
+Detector_box.Copy Absorber5
+Absorber5.Position {-5+Y_CZT_module_in_PP_box} {-Y_AlBox_Dim+AlBox_Thickness+Z_PP_box_DIM} {X_CZT_module_in_PP_box}
+Absorber5.Rotation -90 90 0
+Absorber5.Mother TestSpace
+
+
+Detector_box.Copy Absorber6
+Absorber6.Position {-5-Y_CZT_module_in_PP_box} {Y_AlBox_Dim-AlBox_Thickness-Z_PP_box_DIM} {X_CZT_module_in_PP_box}
+Absorber6.Rotation 90 90 0
+Absorber6.Mother TestSpace

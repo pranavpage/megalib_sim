@@ -5,6 +5,10 @@ Constant P2 0.231
 Constant XMOD_DIM {7*P1+1*P2}
 Constant YMOD_DIM {7*P1+1*P2}
 Constant ZMOD_DIM 0.25
+//
+Constant XCOV_DIM {3.94/2}
+Constant YCOV_DIM {3.94/2}
+
 //Position of box
 Constant XCZT_box_POS 0.0
 Constant YCZT_box_POS 0.0
@@ -21,7 +25,6 @@ CZT_module_box.Material Vacuum
 CZT_module_box.Color 1
 CZT_module_box.Visibility 0
 CZT_module_box.Shape BRIK XMOD_DIM YMOD_DIM ZCZT_box_DIM
-
 
 Volume CZT_central
 CZT_central.Material CZT
@@ -279,3 +282,4 @@ CZT_corner_4.Visibility 1
 CZT_corner_4.Shape BRIK {P2/2} {P2/2} ZMOD_DIM
 CZT_corner_4.Position {7*P1+P2/2} {-7*P1-P2/2} {0+Z_CZT_module_POS}
 CZT_corner_4.Mother CZT_module_box
+Include module_with_accurate_pixels_detector_properties.geo

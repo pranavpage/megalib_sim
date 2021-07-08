@@ -374,3 +374,7 @@ CZTDetector_corner_4.EnergyResolution Gauss  100000    100000    {  100000 *0.01
 CZTDetector_corner_4.FailureRate 0.0
 #---------------------------------------------------------------------------
 %-------------------------------Trigger conditions--------------------------
+Trigger T
+T.Veto False
+T.TriggerByDetector true
+T.DetectorType Voxel3D 1

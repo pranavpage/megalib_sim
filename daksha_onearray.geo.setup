@@ -1,0 +1,36 @@
+Include Comp_materials.geo
+Volume World
+World.Material Vacuum
+World.Visibility 0
+World.Color 0
+World.Shape BRIK 80. 80. 80.
+World.Mother 0
+Include CZT_module.geo
+
+//Making the ME Box Housing
+//Inner dimensions
+Constant XME_BOX_DIM_IN {25.4/2}
+Constant YME_BOX_DIM_IN {36.4/2}
+Constant ZME_BOX_DIM_IN {4.05/2}
+Constant ME_BOX_Thickness {0.6}
+Constant ZME_BOX_DIM_OUT {4.35/2}
+
+Shape BRIK S_ME_BOX_out
+S_ME_BOX_out.Parameters {XME_BOX_DIM_IN+ME_BOX_Thickness} {YME_BOX_DIM_IN+ME_BOX_Thickness} {ZME_BOX_DIM_OUT}
+
+Shape BRIK S_ME_BOX_in
+S_ME_BOX_in.Parameters XME_BOX_DIM_IN YME_BOX_DIM_IN ZME_BOX_DIM_IN
+
+Orientation S_ME_BOX_in_Orientation
+S_ME_BOX_in_Orientation.Position 0.0 0.0 0.1
+
+Shape Subtraction S_ME_BOX
+S_ME_BOX.Parameters S_ME_BOX_out S_ME_BOX_in S_ME_BOX_in_Orientation
+
+Volume ME_BOX
+ME_BOX.Color 1
+ME_BOX.Visibility 1
+ME_BOX.Material Alu6061
+ME_BOX.Shape S_ME_BOX
+ME_BOX.Position 0 0 0
+ME_BOX.Mother World

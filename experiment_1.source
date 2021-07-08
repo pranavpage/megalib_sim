@@ -1,0 +1,19 @@
+#356 keV simulation of experiment
+
+Version         2
+Geometry        $(MEGALIB)/mycodes/experiment_al_box.geo.setup
+
+
+PhysicsListEM            Standard
+
+StoreSimulationInfo      all
+
+Run ExpSim
+ExpSim.FileName Exp_mono356_Cone
+ExpSim.Time   100
+
+ExpSim.Source mono356
+mono356.ParticleType    1
+mono356.Beam            ConeBeam 29.0 0 0 -29.0 0 -11.975 4.4004
+mono356.Spectrum        Mono 356
+mono356.Flux            1e4
