@@ -1,7 +1,7 @@
 #356 keV simulation of experiment
 
 Version         2
-Geometry        $(MEGALIB)/mycodes/experiment_al_box.geo.setup
+Geometry        $(MEGALIB)/mycodes/lab_setup/experiment_al_box.geo.setup
 
 
 PhysicsListEM            Standard
@@ -14,6 +14,6 @@ ExpSim.Time   100
 
 ExpSim.Source mono356
 mono356.ParticleType    1
-mono356.Beam            ConeBeam 29.0 0 0 -29.0 0 -11.975 4.4004
+mono356.Beam            ConeBeam 29.0 0 -11.975 -1.0 0 0 3.8841
 mono356.Spectrum        Mono 356
-mono356.Flux            1e4
+mono356.Flux            1e5

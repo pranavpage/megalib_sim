@@ -1,0 +1,12 @@
+Include Comp_materials.geo
+Volume World
+World.Material Vacuum
+World.Visibility 0
+World.Color 0
+World.Shape BRIK 80. 80. 80.
+World.Mother 0
+
+Include CZT_module.geo
+CZT_module_box.Copy Det1
+Det1.Position 0 0 0
+Det1.Mother World

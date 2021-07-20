@@ -1,5 +1,5 @@
 SurroundingSphere 200.0  0.0  0.0  0.0  200.0
-Include Comp_materials.geo
+Include $(MEGALIB)/mycodes/Daksha/Comp_materials.geo
 Volume World
 World.Material Vacuum
 World.Visibility 0
@@ -42,7 +42,7 @@ SourceBox.Material Vacuum
 SourceBox.Visibility 1
 SourceBox.Color 2
 SourceBox.Shape BRIK 1 1 1
-SourceBox.Position {X_AlBox_Dim-AlBox_Thickness-1} 0 0
+SourceBox.Position {X_AlBox_Dim-AlBox_Thickness-1} 0 -11.975
 SourceBox.Mother TestSpace
 
 //placing scatterer on the floor

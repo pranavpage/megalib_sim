@@ -1,0 +1,17 @@
+Version 1
+Geometry $(MEGALIB)/mycodes/Daksha/daksha_onearray.geo.setup
+# Physics list
+PhysicsListEM                        LivermorePol
+
+# Output formats
+StoreSimulationInfo                  all
+
+Run ME_Test
+ME_Test.FileName        ME_Test_sim
+ME_Test.Time            10.0
+
+ME_Test.Source Beam_100
+Beam_100.ParticleType     1
+Beam_100.Beam             ConeBeam 0 0 10 0 0 -1 60
+Beam_100.Spectrum         Mono 100
+Beam_100.Flux             1e3

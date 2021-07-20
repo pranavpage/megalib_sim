@@ -19,7 +19,7 @@ Shape BRIK S_ME_BOX_out
 S_ME_BOX_out.Parameters {XME_BOX_DIM_IN+ME_BOX_Thickness} {YME_BOX_DIM_IN+ME_BOX_Thickness} {ZME_BOX_DIM_OUT}
 
 Shape BRIK S_ME_BOX_in
-S_ME_BOX_in.Parameters XME_BOX_DIM_IN YME_BOX_DIM_IN ZME_BOX_DIM_IN
+S_ME_BOX_in.Parameters XME_BOX_DIM_IN YME_BOX_DIM_IN {ZME_BOX_DIM_IN}
 
 Orientation S_ME_BOX_in_Orientation
 S_ME_BOX_in_Orientation.Position 0.0 0.0 0.1
@@ -29,7 +29,7 @@ S_ME_BOX.Parameters S_ME_BOX_out S_ME_BOX_in S_ME_BOX_in_Orientation
 
 Volume ME_BOX_surr
 ME_BOX_surr.Color 2
-ME_BOX_surr.Visibility 1
+ME_BOX_surr.Visibility 0
 ME_BOX_surr.Material Vacuum
 ME_BOX_surr.Shape BRIK {XME_BOX_DIM_IN+ME_BOX_Thickness} {YME_BOX_DIM_IN+ME_BOX_Thickness} {ZME_BOX_DIM_OUT}
 ME_BOX_surr.Position 0 0 0
@@ -43,6 +43,39 @@ ME_BOX.Shape S_ME_BOX
 ME_BOX.Position 0 0 0
 ME_BOX.Mother ME_BOX_surr
 
+Volume ME_PCB
+ME_PCB.Color 4
+ME_PCB.Visibility 1
+ME_PCB.Material CircuitBoard
+ME_PCB.Shape BRIK {25.0/2} {31.5/2} {0.25/2}
+ME_PCB.Position 0.0 {-2.45} {-1.75}
+ME_PCB.Mother ME_BOX_surr
+
+Shape BRIK S_box_cover_whole
+S_box_cover_whole.Parameters {26.6/2} {37.6/2} {0.05}
+Shape BRIK S_box_cover_hole
+S_box_cover_hole.Parameters {25.4/2} {26.615/2} {0.05}
+Orientation S_box_cover_holeOrientation
+S_box_cover_holeOrientation.Position 0 {-4.8925} {0}
+Shape Subtraction S_box_cover
+S_box_cover.Parameters S_box_cover_whole S_box_cover_hole S_box_cover_holeOrientation
+
+Volume ME_BOX_COVER
+ME_BOX_COVER.Color 7
+ME_BOX_COVER.Visibility 1
+ME_BOX_COVER.Material Alu6061
+ME_BOX_COVER.Shape S_box_cover
+ME_BOX_COVER.Position 0 0 {-1.75+3.88}
+ME_BOX_COVER.Mother ME_BOX_surr
+
+Volume MLI_COVER
+MLI_COVER.Color 6
+MLI_COVER.Visibility 1
+MLI_COVER.Material MLI
+MLI_COVER.Shape BRIK {25.4/2} {26.615/2} {0.05}
+MLI_COVER.Position 0 {-4.8925} {-1.75+3.88}
+MLI_COVER.Mother ME_BOX_surr
+
 Constant Y_N 5
 Constant X_N 4
 Constant X_mod_in_ME_min {-6.1472}//-{XME_BOX_DIM_IN-6.5528}
@@ -52,7 +85,7 @@ Constant Y_PITCH 4.0996
 For J Y_N Y_mod_in_ME_min {Y_PITCH}
   For I X_N X_mod_in_ME_min {X_PITCH}
     CZT_module_box.Copy Det%I_%J
-    Det%I_%J.Position $I $J -0.4625
+    Det%I_%J.Position $I $J {-0.4625+0.25}
     Det%I_%J.Mother ME_BOX_surr
   Done
 Done

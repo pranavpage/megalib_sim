@@ -1,5 +1,5 @@
 //includes the PCB chip for readout and the polypropylene box used
-Include module_prefinal.geo
+Include $(MEGALIB)/mycodes/Daksha/CZT_module.geo
 Volume Detector_box
 Detector_box.Material Vacuum
 Detector_box.Visibility 0

@@ -92,7 +92,7 @@ CZT_support_without_hole_4.Parameters CZT_support_without_hole_3 RectHoleCentral
 
 Volume CZT_support_1
 CZT_support_1.Material PMTPlastic // VT Plastic
-CZT_support_1.Color 6
+CZT_support_1.Color 1
 CZT_support_1.Visibility 1
 CZT_support_1.Shape CZT_support_without_hole_4
 CZT_support_1.Position 0 0 ZCZT_support_POS
@@ -204,7 +204,7 @@ Connector_6.Parameters Connector_5 ConnectorPins_2 ConnectorPins_2Orientation2
 
 Volume VConnector_1
 VConnector_1.Material Aluminium
-VConnector_1.Color 7
+VConnector_1.Color 4
 VConnector_1.Visibility 1
 VConnector_1.Shape Connector_6
 VConnector_1.Position 1.36 -0.8 {Z_ASIC_BASE_POS-0.2-0.14} //Offset due to overlaps and change of geometric center
@@ -212,7 +212,7 @@ VConnector_1.Mother CZT_module_box
 
 Volume VConnector_2
 VConnector_2.Material Aluminium
-VConnector_2.Color 7
+VConnector_2.Color 4
 VConnector_2.Visibility 1
 VConnector_2.Shape Connector_6
 VConnector_2.Position -0.54 0.8 {Z_ASIC_BASE_POS-0.2-0.14}
@@ -298,4 +298,4 @@ CZT_corner_4.Visibility 1
 CZT_corner_4.Shape BRIK {P2/2} {P2/2} ZMOD_DIM
 CZT_corner_4.Position {7*P1+P2/2} {-7*P1-P2/2} {0+Z_CZT_module_POS}
 CZT_corner_4.Mother CZT_module_box
-Include module_with_accurate_pixels_detector_properties.geo
+Include $(MEGALIB)/mycodes/rough_and_old/module_with_accurate_pixels_detector_properties.geo

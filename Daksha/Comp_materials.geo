@@ -67,6 +67,18 @@ Alu6061.ComponentByMass       Zn   0.0025
 Alu6061.ComponentByMass       Ti   0.0015
 Alu6061.ComponentByMass       Al   0.9665
 
+Material FeNi42
+FeNi42.Density                8.12
+FeNi42.ComponentByMass        Fe  0.58
+FeNi42.ComponentByMass        Ni  0.42
+
+Material MLI
+MLI.Density                  1.404
+MLI.ComponentByMass          H   0.0364
+MLI.ComponentByMass          C   0.6553
+MLI.ComponentByMass          N   0.0327
+MLI.ComponentByMass          O   0.2756
+
 Material PP
 PP.Density                0.92
 PP.Component              C   3
