@@ -4,7 +4,7 @@ Volume World
 World.Material Vacuum
 World.Visibility 0
 World.Color 0
-World.Shape BRIK 80. 80. 80.
+World.Shape BRIK 300. 300. 300.
 World.Mother 0
 Include detector_box_and_pcb.geo
 Constant AlBox_Thickness 0.5
@@ -42,7 +42,7 @@ SourceBox.Material Vacuum
 SourceBox.Visibility 1
 SourceBox.Color 2
 SourceBox.Shape BRIK 1 1 1
-SourceBox.Position {X_AlBox_Dim-AlBox_Thickness-1} 0 -11.975
+SourceBox.Position {X_AlBox_Dim-AlBox_Thickness-1} 0 0
 SourceBox.Mother TestSpace
 
 //placing scatterer on the floor

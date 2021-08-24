@@ -9,11 +9,11 @@ PhysicsListEM            Standard
 StoreSimulationInfo      all
 
 Run ExpSim
-ExpSim.FileName Exp_mono356_Cone
-ExpSim.Time   100
-
+ExpSim.FileName Rec_STC_mono356_Cone_20
+ExpSim.Time   5
+#20
 ExpSim.Source mono356
 mono356.ParticleType    1
-mono356.Beam            ConeBeam 29.0 0 -11.975 -1.0 0 0 3.8841
+mono356.Beam            ConeBeam {29.0} 0 {-1.4198} -29 0 {-11.975-{-1.4198}} 3.9881
 mono356.Spectrum        Mono 356
 mono356.Flux            1e5

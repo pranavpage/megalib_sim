@@ -5,7 +5,7 @@
 
 # Global parameters:
 Version               1
-Geometry              $(MEGALIB)/mycodes/two_detector_experimental.geo.setup
+Geometry              $(MEGALIB)/mycodes/lab_setup/spherical_czt.geo.setup
 
 # Physics list
 PhysicsListEM                        LivermorePol
@@ -18,11 +18,11 @@ StoreSimulationInfo                  all
 # Run 1: A homogeneous beam
 
 Run MyHomogeneousBeam
-MyHomogeneousBeam.FileName                      H_beam_cylindrical
-MyHomogeneousBeam.Time                          20.0
+MyHomogeneousBeam.FileName                      S_czt_HBeam
+MyHomogeneousBeam.Time                          100.0
 
 MyHomogeneousBeam.Source MyHomogeneousBeamSource
 MyHomogeneousBeamSource.ParticleType            1
-MyHomogeneousBeamSource.Beam                    HomogeneousBeam  0 0 5  0 0 -1  6
-MyHomogeneousBeamSource.Spectrum                Mono 60.0
-MyHomogeneousBeamSource.Flux                    1000.0
+MyHomogeneousBeamSource.Beam                    HomogeneousBeam  0 0 35 0 0 -1 25
+MyHomogeneousBeamSource.Spectrum                Mono 356.0
+MyHomogeneousBeamSource.Flux                    100.0
