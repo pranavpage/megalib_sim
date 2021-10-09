@@ -1,0 +1,21 @@
+
+# Global parameters:
+Version               1
+Geometry              $(MEGALIB)/mycodes/lab_setup/spherical_czt.geo.setup
+
+# Physics list
+PhysicsListEM                        LivermorePol
+
+# Output formats
+StoreSimulationInfo                  all
+
+
+Run MyHomogeneousBeam
+MyHomogeneousBeam.FileName                      CZT_sphere_HBeam_0deg_500_1e6
+MyHomogeneousBeam.Time                          100.0
+
+MyHomogeneousBeam.Source MyHomogeneousBeamSource
+MyHomogeneousBeamSource.ParticleType            1
+MyHomogeneousBeamSource.Beam                    HomogeneousBeam  0 0 5 0 0 -1 0.5
+MyHomogeneousBeamSource.Spectrum                Mono 500
+MyHomogeneousBeamSource.Flux                    1e4

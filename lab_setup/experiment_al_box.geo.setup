@@ -27,15 +27,134 @@ Volume TestSpace
 TestSpace.Material Vacuum
 TestSpace.Visibility 0
 TestSpace.Color 0
-TestSpace.Shape BRIK X_AlBox_Dim Y_AlBox_Dim Z_AlBox_Dim
+TestSpace.Shape BRIK X_AlBox_Dim+1 Y_AlBox_Dim+1 Z_AlBox_Dim+1
 TestSpace.Mother World
 
+Volume AlXY_0
+AlXY_0.Material Aluminium
+AlXY_0.Visibility 1
+AlXY_0.Color 1
+AlXY_0.Shape BRIK 30.5 15.5 0.5
+AlXY_0.Position 0 0 -15.5
+AlXY_0.Mother World
+
+Volume AlXY_1
+AlXY_1.Material Aluminium
+AlXY_1.Visibility 1
+AlXY_1.Color 1
+AlXY_1.Shape BRIK 30.5 15.5 0.5
+AlXY_1.Position 0 0 15.5
+AlXY_1.Mother World
+
+
+Volume AlXZ_0
+AlXZ_0.Material Aluminium
+AlXZ_0.Visibility 1
+AlXZ_0.Color 1
+AlXZ_0.Shape BRIK 30.5 0.5 15.5
+AlXZ_0.Position 0 -15.5 0
+AlXZ_0.Mother World
+
+Volume AlXZ_1
+AlXZ_1.Material Aluminium
+AlXZ_1.Visibility 1
+AlXZ_1.Color 1
+AlXZ_1.Shape BRIK 30.5 0.5 15.5
+AlXZ_1.Position 0 15.5 0
+AlXZ_1.Mother World
+
+Volume AlYZ_0
+AlYZ_0.Material Aluminium
+AlYZ_0.Visibility 1
+AlYZ_0.Color 1
+AlYZ_0.Shape BRIK 0.5 15.5 15.5
+AlYZ_0.Position -30.5 0 0
+AlYZ_0.Mother World
+
+Volume AlYZ_1
+AlYZ_1.Material Aluminium
+AlYZ_1.Visibility 1
+AlYZ_1.Color 1
+AlYZ_1.Shape BRIK 0.5 15.5 15.5
+AlYZ_1.Position 30.5 0 0
+AlYZ_1.Mother World
+
+BeginComment
 Volume AlBox
 AlBox.Material Aluminium
 AlBox.Visibility 1
 AlBox.Color 1
 AlBox.Shape AlBoxFinal
 AlBox.Mother TestSpace
+
+Volume WVol
+WVol.Material Aluminium
+WVol.Visibility 1
+WVol.Color 7
+WVol.Shape BRIK 7.5 7.5 0.5
+
+For X 4 -22.5 {15}
+    WVol.Copy WVolXY_%X_0_0
+    WVolXY_%X_0_0.Position $X -7.5 -16
+    WVolXY_%X_0_0.Mother TestSpace
+
+    WVol.Copy WVolXY_%X_-1_1
+    WVolXY_%X_-1_1.Position $X -7.5 16
+    WVolXY_%X_-1_1.Mother TestSpace
+
+    WVol.Copy WVolXY_%X_1_1
+    WVolXY_%X_1_1.Position $X +7.5 16
+    WVolXY_%X_1_1.Mother TestSpace
+
+    WVol.Copy WVolXY_%X_1_-1
+    WVolXY_%X_1_-1.Position $X +7.5 -16
+    WVolXY_%X_1_-1.Mother TestSpace
+Done
+
+For Y 2 -7.5 {15}
+    WVol.Copy WVolYZ_-1_%Y_1
+    WVolYZ_-1_%Y_1.Position -31 $Y +7.5
+    WVolYZ_-1_%Y_1.Rotation 0 90 0
+    WVolYZ_-1_%Y_1.Mother TestSpace
+
+    WVol.Copy WVolYZ_1_%Y_1
+    WVolYZ_1_%Y_1.Position 31 $Y +7.5
+    WVolYZ_1_%Y_1.Rotation 0 90 0
+    WVolYZ_1_%Y_1.Mother TestSpace
+
+    WVol.Copy WVolYZ_-1_%Y_-1
+    WVolYZ_-1_%Y_-1.Position -31 $Y -7.5
+    WVolYZ_-1_%Y_-1.Rotation 0 90 0
+    WVolYZ_-1_%Y_-1.Mother TestSpace
+
+    WVol.Copy WVolYZ_1_%Y_-1
+    WVolYZ_1_%Y_-1.Position 31 $Y -7.5
+    WVolYZ_1_%Y_-1.Rotation 0 90 0
+    WVolYZ_1_%Y_-1.Mother TestSpace
+Done
+
+For X 4 -22.5 {15}
+    WVol.Copy WVolXZ_%X_-1_1
+    WVolXZ_%X_-1_1.Position $X -16 +7.5
+    WVolXZ_%X_-1_1.Rotation 90 0 0
+    WVolXZ_%X_-1_1.Mother TestSpace
+
+    WVol.Copy WVolXZ_%X_-1_-1
+    WVolXZ_%X_-1_-1.Position $X -16 -7.5
+    WVolXZ_%X_-1_-1.Rotation 90 0 0
+    WVolXZ_%X_-1_-1.Mother TestSpace
+
+    WVol.Copy WVolXZ_%X_1_1
+    WVolXZ_%X_1_1.Position $X 16 +7.5
+    WVolXZ_%X_1_1.Rotation 90 0 0
+    WVolXZ_%X_1_1.Mother TestSpace
+
+    WVol.Copy WVolXZ_%X_1_-1
+    WVolXZ_%X_1_-1.Position $X 16 -7.5
+    WVolXZ_%X_1_-1.Rotation 90 0 0
+    WVolXZ_%X_1_-1.Mother TestSpace
+Done
+EndComment
 
 Volume SourceBox
 SourceBox.Material Vacuum

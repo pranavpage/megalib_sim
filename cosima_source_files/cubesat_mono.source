@@ -1,0 +1,15 @@
+# Monochromatic simulation for a cubesat with 1 Scatterer and 2 Absorbers
+Geometry $(MEGALIB)/mycodes/cubesat/cubesat.geo.setup
+Version 	1
+PhysicsListEM            Standard
+StoreSimulationInfo      all
+
+Run CubeSat1s2a
+CubeSat1s2a.FileName 	CubeSat1s2a_100_15deg
+CubeSat1s2a.Time 		100
+
+CubeSat1s2a.Source mono_100
+mono_100.ParticleType 			1
+mono_100.Beam HomogeneousBeam	1.339 0 10 -1.339 0 -5 2.0
+mono_100.Spectrum				Mono 100
+mono_100.Flux 					1e4

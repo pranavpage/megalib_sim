@@ -1,0 +1,90 @@
+SurroundingSphere 200.0  0.0  0.0  0.0  200.0
+Include $(MEGALIB)/mycodes/Daksha/Comp_materials.geo
+Volume World
+World.Material Vacuum
+World.Visibility 0
+World.Color 0
+World.Shape BRIK 300. 300. 300.
+World.Mother 0
+Include detector_box_and_pcb.geo
+
+Volume AngerVol
+AngerVol.Material CZT
+AngerVol.Visibility 1
+AngerVol.Color 1
+AngerVol.Shape SPHERE 20.0 30.0 0 180 0 360
+AngerVol.Position 0 0 0
+AngerVol.Mother World
+
+Volume CZT_plate
+CZT_plate.Material CZT
+CZT_plate.Visibility 1
+CZT_plate.Color 2
+CZT_plate.Shape BRIK 5 5 0.25
+CZT_plate.Position 0 0 0
+CZT_plate.Mother World
+
+###############################################
+AngerCamera Spherical_czt
+Spherical_czt.SensitiveVolume AngerVol
+Spherical_czt.DetectorVolume AngerVol
+Spherical_czt.NoiseThreshold 20
+Spherical_czt.TriggerThreshold 20
+Spherical_czt.Positioning XYZ
+Spherical_czt.PositionResolution  356  0.1
+
+Spherical_czt.EnergyResolution  Gauss      14        14     1.15
+Spherical_czt.EnergyResolution  Gauss      60        60     1.26
+Spherical_czt.EnergyResolution  Gauss     122       122     1.47
+Spherical_czt.EnergyResolution  Gauss     662       662     4.125
+Spherical_czt.EnergyResolution  Gauss   10000     10000    16.04
+Spherical_czt.EnergyResolution Gauss  10        10        {      10 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  20        20        {      20 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  50        50        {      50 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  100       100       {     100 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  200       200       {     200 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  500       500       {     500 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  1000      1000      {    1000 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  2000      2000      {    2000 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  5000      5000      {    5000 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  10000     10000     {   10000 *0.01/2.35 + 6.6  }
+Spherical_czt.EnergyResolution Gauss  100000    100000    {  100000 *0.01/2.35 + 6.6  }
+
+Spherical_czt.FailureRate 0
+###############################################################################
+Voxel3D CZT_det
+CZT_det.SensitiveVolume CZT_plate
+CZT_det.DetectorVolume CZT_plate
+CZT_det.TriggerThreshold 20
+CZT_det.NoiseThresholdEqualsTriggerThreshold true
+CZT_det.StructuralOffset    0.0   0.0   0.0
+CZT_det.StructuralPitch     0.0   0.0   0.0
+
+CZT_det.Offset              0.0   0.0    0.0
+CZT_det.VoxelNumber         41     41      1.0
+
+CZT_det.EnergyResolution  Gauss      14        14     1.15
+CZT_det.EnergyResolution  Gauss      60        60     1.26
+CZT_det.EnergyResolution  Gauss     122       122     1.47
+CZT_det.EnergyResolution  Gauss     662       662     4.125
+CZT_det.EnergyResolution  Gauss   10000     10000    16.04
+CZT_det.EnergyResolution Gauss  10        10        {      10 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  20        20        {      20 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  50        50        {      50 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  100       100       {     100 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  200       200       {     200 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  500       500       {     500 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  1000      1000      {    1000 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  2000      2000      {    2000 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  5000      5000      {    5000 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  10000     10000     {   10000 *0.01/2.35 + 6.6  }
+CZT_det.EnergyResolution Gauss  100000    100000    {  100000 *0.01/2.35 + 6.6  }
+CZT_det.FailureRate 0.0
+
+Trigger T2
+T2.TriggerByDetector true
+T2.Detector Spherical_czt 1
+
+Trigger T1
+T1.TriggerByDetector true
+T1.Detector CZT_det 1

@@ -7,13 +7,14 @@ Geometry        $(MEGALIB)/mycodes/lab_setup/experiment_al_box.geo.setup
 PhysicsListEM            Standard
 
 StoreSimulationInfo      all
+#StoreSimulationInfoWatchedVolumes AlXY_0
 
 Run ExpSim
-ExpSim.FileName Rec_STC_mono356_Cone_20
-ExpSim.Time   5
+ExpSim.FileName back_projection_off_axis_sim_20_1e6
+ExpSim.Time   1
 #20
 ExpSim.Source mono356
 mono356.ParticleType    1
-mono356.Beam            ConeBeam {29.0} 0 {-1.4198} -29 0 {-11.975-{-1.4198}} 3.9881
+mono356.Beam            ConeBeam {29.0} {10.0} {-1.4198} -29 -10.0 {-11.975-{-1.4198}} 3.9881
 mono356.Spectrum        Mono 356
-mono356.Flux            1e5
+mono356.Flux            1e6

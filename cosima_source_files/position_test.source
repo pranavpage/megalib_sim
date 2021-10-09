@@ -1,0 +1,21 @@
+#356 keV test to check imaging options`
+
+Version         2
+Geometry        $(MEGALIB)/mycodes/lab_setup/position_test.geo.setup
+
+
+PhysicsListEM            Standard
+
+StoreSimulationInfo      all
+
+Run ExpSim
+ExpSim.FileName Pos_356_Far_Point
+ExpSim.Time   10
+#20 degrees
+ExpSim.Source mono356
+mono356.ParticleType    1
+#mono356.Beam            ConeBeam {3} 0 {5} -3 0 {-5-{5}} 3.9881
+#mono356.Beam            PointSource 2 0 3.464
+mono356.Beam            FarFieldPointSource 25 0
+mono356.Spectrum        Mono 356
+mono356.Flux            1e5
