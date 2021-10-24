@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from cv2 import blur, imwrite
 img_df=read_csv("back_project.csv", index_col=0)
 img_array=img_df.to_numpy()
+
 kernel_list=[3,5,7]
 for kernel_size in kernel_list:
     img_blurred=blur(img_array, (kernel_size, kernel_size))

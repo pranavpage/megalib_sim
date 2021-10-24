@@ -23,6 +23,7 @@ class Det:
         self.hits=[]
         self.pixnum=[]
         self.df=pd.DataFrame(columns=["timestamp", "X", "Y", "Z", "energy_deposit"])
+        self.sca_pixnum=[]
     def pixel_number_of(self, hit):
         pixnum=-1
         for i in range(16):

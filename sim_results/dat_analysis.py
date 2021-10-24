@@ -31,7 +31,7 @@ df["theta_deg"]=theta_deg
 print(df.head())
 print("\t Events with first hit in CZT plate : {}".format(len(df)))'''
 print(len(df))
-df.to_csv("comp_hits_rec_40.csv")
+df.to_csv("comp_hits_default_1e6.csv")
 
 
         #if(row['ID']%100==0):
