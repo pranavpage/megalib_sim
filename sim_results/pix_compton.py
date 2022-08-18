@@ -5,8 +5,7 @@ import pandas as pd
 pd.options.mode.chained_assignment = None
 from pixelization import Det 
 import os
-htag="default_1e6"
-print(os.getcwd())
+htag="default_5e5"
 comp_hits_file='comp_hits_{}.csv'.format(htag)
 comp_hits_all=pd.read_csv(comp_hits_file)
 if(not os.path.isdir(htag)):
@@ -22,12 +21,24 @@ print(Sca)
 Abs1=Det(np.array([-26.975, 0, -12.847]), Y_global, Z_global, "abs1")
 Abs2=Det(np.array([-26.975, 0, 12.847]), Y_global, Z_global, "abs2")
 Abs3=Det(np.array([-5, 0, 11.975]), X_global, Y_global, "abs3")
+#10.8125
+'''Abs3_0=Det(np.array([-5+2*1.97, 0, 11.975]), X_global, Y_global, "abs3_0")
+Abs3_1=Det(np.array([-5, 0, 11.975]), X_global, Y_global, "abs3_1")
+Abs3_2=Det(np.array([-5-2*1.97, 0, 11.975]), X_global, Y_global, "abs3_2")
+Abs3_3=Det(np.array([-5-4*1.97, 0, 11.975]), X_global, Y_global, "abs3_3")
+Abs3_4=Det(np.array([-5-6*1.97, 0, 11.975]), X_global, Y_global, "abs3_4")
+Abs3_5=Det(np.array([-5-8*1.97, 0, 11.975]), X_global, Y_global, "abs3_5")
+'''
+#Abs3_3=Det(np.array([-5-1.97, 0+1.97, 10.8125]), X_global, Y_global, "abs3_3")
+#Abs3_4=Det(np.array([-5-1.97, 0-1.97, 10.8125]), X_global, Y_global, "abs3_4")
 Abs4=Det(np.array([5, 0, 11.975]), X_global, Y_global, "abs4")
 Abs5=Det(np.array([-5, -11.975, 0]), X_global, Z_global, "abs5")
 Abs6=Det(np.array([-5, 11.975, 0]), X_global, Z_global, "abs6")
 all_dets=[Abs1,Abs2,Abs3,Abs4,Abs5,Abs6]
-det_nums=[2,5]
+det_nums=[1,2,3,4,5,6]
 det_list=[all_dets[i-1] for i in det_nums]
+error_count=0
+#det_list=[Abs3_0, Abs3_1, Abs3_2, Abs3_3, Abs3_4, Abs3_5, Abs4]
 for det in det_list:
     print(det)
 diff_count=0
@@ -43,10 +54,13 @@ for index,hit in comp_hits_all.iterrows():
                 det.pixnum.append(det_pixnum)
                 det.sca_pixnum.append(sca_pixnum)
                 diff_count+=1
+    else:
+         error_count+=1
     print("{}/{}".format(index, len(comp_hits_all)), end='\r')
 main_df=pd.DataFrame(columns=['X1', 'Y1', 'Z1', 'E1', 'X2', 'Y2', 'Z2', 'E2', 'P1', 'P2'])
 tag=""
 print("Total Compton events : {}".format(len(comp_hits_all)))
+print(error_count)
 print("Events with first hit in Scatterer and second hit not in Scatterer : {}".format(diff_count))
 for det in det_list:
     det.df=comp_hits_all.iloc[det.hits]
@@ -55,6 +69,6 @@ for det in det_list:
     main_df=main_df.append(det.df, sort=True)
     tag+="_"+det.id
     print("\t For {}, Number of Compton events : {}".format(det.id, len(det.df)))
-    #det.df.to_csv("{}_{}.csv".format(cfname, det.id))
+    det.df.to_csv("{}_{}.csv".format(cfname, det.id))
 #Sca.df.to_csv("{}_{}.csv".format(cfname, tag))
 main_df.to_csv("{}_in{}.csv".format(cfname, tag))

@@ -1,0 +1,82 @@
+SurroundingSphere 200.0  0.0  0.0  0.0  200.0
+Include Comp_materials.geo
+Volume World
+World.Material Vacuum
+World.Visibility 0
+World.Color 0
+World.Shape BRIK 80. 80. 80.
+World.Mother 0
+Include detector_box_and_pcb.geo
+Constant AlBox_Thickness 0.5
+Constant X_AlBox_Dim {30+AlBox_Thickness}
+Constant Y_AlBox_Dim {15+AlBox_Thickness}
+Constant Z_AlBox_Dim {15+AlBox_Thickness}
+
+Shape BRIK AlBox_Outside
+AlBox_Outside.Parameters X_AlBox_Dim Y_AlBox_Dim Z_AlBox_Dim
+
+Shape BRIK AlBox_Inside
+AlBox_Inside.Parameters {X_AlBox_Dim-AlBox_Thickness} {Y_AlBox_Dim-AlBox_Thickness} {Z_AlBox_Dim-AlBox_Thickness}
+Orientation AlBox_InsideOrientation
+AlBox_InsideOrientation.Position 0 0 0
+
+Shape Subtraction AlBoxFinal
+AlBoxFinal.Parameters AlBox_Outside AlBox_Inside AlBox_InsideOrientation
+
+Volume TestSpace
+TestSpace.Material Vacuum
+TestSpace.Visibility 0
+TestSpace.Color 0
+TestSpace.Shape BRIK X_AlBox_Dim Y_AlBox_Dim Z_AlBox_Dim
+TestSpace.Mother World
+
+Volume AlBox
+AlBox.Material Aluminium
+AlBox.Visibility 1
+AlBox.Color 1
+AlBox.Shape AlBoxFinal
+AlBox.Mother TestSpace
+
+Volume SourceBox
+SourceBox.Material Vacuum
+SourceBox.Visibility 1
+SourceBox.Color 2
+SourceBox.Shape BRIK 1 1 1
+SourceBox.Position {X_AlBox_Dim-AlBox_Thickness-1} 0 0
+SourceBox.Mother TestSpace
+
+//placing scatterer on the floor
+Detector_box.Copy Scatterer
+Scatterer.Position {-X_CZT_module_in_PP_box} {-Y_CZT_module_in_PP_box} {-Z_AlBox_Dim+Z_PP_box_DIM+AlBox_Thickness}
+Scatterer.Mother TestSpace
+
+Detector_box.Copy Absorber1
+Absorber1.Position {-X_AlBox_Dim+AlBox_Thickness+Z_PP_box_DIM} {0+Y_CZT_module_in_PP_box} {-Z_AlBox_Dim+AlBox_Thickness+XMOD_DIM-X_CZT_module_in_PP_box+PP_box_thickness}
+Absorber1.Rotation 0 -90 180
+Absorber1.Mother TestSpace
+
+Detector_box.Copy Absorber2
+Absorber2.Position {-X_AlBox_Dim+AlBox_Thickness+Z_PP_box_DIM} {0-Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-XMOD_DIM+X_CZT_module_in_PP_box-PP_box_thickness}
+Absorber2.Rotation 0 90 0
+Absorber2.Mother TestSpace
+
+Detector_box.Copy Absorber3
+Absorber3.Position {-5+X_CZT_module_in_PP_box} {-Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-Z_PP_box_DIM}
+Absorber3.Rotation 0 180 0
+Absorber3.Mother TestSpace
+
+Detector_box.Copy Absorber4
+Absorber4.Position {+5-X_CZT_module_in_PP_box} {Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-Z_PP_box_DIM}
+Absorber4.Rotation 0 180 180
+Absorber4.Mother TestSpace
+
+Detector_box.Copy Absorber5
+Absorber5.Position {-5+Y_CZT_module_in_PP_box} {-Y_AlBox_Dim+AlBox_Thickness+Z_PP_box_DIM} {X_CZT_module_in_PP_box}
+Absorber5.Rotation -90 90 0
+Absorber5.Mother TestSpace
+
+
+Detector_box.Copy Absorber6
+Absorber6.Position {-5-Y_CZT_module_in_PP_box} {Y_AlBox_Dim-AlBox_Thickness-Z_PP_box_DIM} {X_CZT_module_in_PP_box}
+Absorber6.Rotation 90 90 0
+Absorber6.Mother TestSpace

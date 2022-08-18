@@ -18,7 +18,7 @@ class Det:
             #ith row
             for j in range(16):
                 #jth col
-                pixel_matrix[i,j]=np.round(self.origin+self.x*(np.sum(pm_x[i, 0:j])+pm_x[i,j]/2)+self.y*(np.sum(pm_y[0:i,j])+pm_y[i,j]/2), 3)
+                pixel_matrix[i,j]=np.round(self.origin+self.x*(np.sum(pm_x[i, 0:j])+pm_x[i,j]/2)+self.y*(np.sum(pm_y[0:i,j])+pm_y[i,j]/2), 4)
         self.pixel_matrix=pixel_matrix
         self.hits=[]
         self.pixnum=[]
@@ -28,7 +28,7 @@ class Det:
         pixnum=-1
         for i in range(16):
             for j in range(16):
-                if(np.array_equal(self.pixel_matrix[i,j], np.round(hit, 3))):
+                if(np.array_equal(self.pixel_matrix[i,j], np.round(hit, 4))):
                     pixnum=i*16+j
         return pixnum
     def __repr__(self):

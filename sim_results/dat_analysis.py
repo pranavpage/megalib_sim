@@ -25,17 +25,13 @@ total_count=0
 #scatterer_count=0
 #abs_count=np.zeros(6, dtype=int)
 print("Total number of Compton events : {}".format(len(df)))
-df=df[(df['Z1']==-11.975) & (df['Z2']!=-11.975)]
+df=df[(df['Z1']==-11.975) & (df['Z2']!=-11.975) ]
 '''theta_deg=np.degrees(np.arccos(df['Z2']/(np.sqrt(df['X2']**2+df['Y2']**2+df['Z2']**2))))
 df["theta_deg"]=theta_deg
 print(df.head())
 print("\t Events with first hit in CZT plate : {}".format(len(df)))'''
 print(len(df))
-df.to_csv("comp_hits_default_1e6.csv")
-
-
-        #if(row['ID']%100==0):
-            #ax.scatter3D(row['X2'], row['Y2'], row['Z2'], color='g')
+df.to_csv("/media/pranav/page/Project_Daksha/MEGALIB_PARAM/megalib/mycodes/sim_results/comp_hits_confirm_200keV_1e6.csv")
 
 '''
 for index, row in df.iterrows():

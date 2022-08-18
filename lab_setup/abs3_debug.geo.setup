@@ -177,32 +177,40 @@ Detector_box.Copy Absorber2
 Absorber2.Position {-X_AlBox_Dim+AlBox_Thickness+Z_PP_box_DIM} {0-Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-XMOD_DIM+X_CZT_module_in_PP_box-PP_box_thickness}
 Absorber2.Rotation 0 90 0
 Absorber2.Mother TestSpace
-Detector_box.Copy Absorber3
-Absorber3.Position {-5+X_CZT_module_in_PP_box} {-Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-Z_PP_box_DIM}
-Absorber3.Rotation 0 180 0
-Absorber3.Mother TestSpace
 
-BeginComment
+//Detector_box.Copy Absorber3
+//Absorber3.Position {-5+X_CZT_module_in_PP_box} {-Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-Z_PP_box_DIM}
+//Absorber3.Rotation 0 180 0
+//Absorber3.Mother TestSpace
+CZT_module_box.Copy Abs3_0
+Abs3_0.Position {-5+2*XCOV_DIM} {0} {11.975+1.1625}
+Abs3_0.Rotation 0 180 0
+Abs3_0.Mother TestSpace
+
 CZT_module_box.Copy Abs3_1
-Abs3_1.Position {-5+XCOV_DIM} {0+YCOV_DIM} {11.975+1.1625}
+Abs3_1.Position {-5} {0} {11.975+1.1625}
 Abs3_1.Rotation 0 180 0
 Abs3_1.Mother TestSpace
 
 CZT_module_box.Copy Abs3_2 
-Abs3_2.Position {-5+XCOV_DIM} {0-YCOV_DIM} {11.975+1.1625}
+Abs3_2.Position {-5-2*XCOV_DIM} {0} {11.975+1.1625}
 Abs3_2.Rotation 0 180 0
 Abs3_2.Mother TestSpace
 
 CZT_module_box.Copy Abs3_3
-Abs3_3.Position {-5-XCOV_DIM} {0+YCOV_DIM} {11.975+1.1625}
+Abs3_3.Position {-5-4*XCOV_DIM} {0} {11.975+1.1625}
 Abs3_3.Rotation 0 180 0
 Abs3_3.Mother TestSpace
 
 CZT_module_box.Copy Abs3_4
-Abs3_4.Position {-5-XCOV_DIM} {0-YCOV_DIM} {11.975+1.1625}
+Abs3_4.Position {-5-6*XCOV_DIM} {0} {11.975+1.1625}
 Abs3_4.Rotation 0 180 0
 Abs3_4.Mother TestSpace
-EndComment
+
+CZT_module_box.Copy Abs3_5
+Abs3_5.Position {-5-8*XCOV_DIM} {0} {11.975+1.1625}
+Abs3_5.Rotation 0 180 0
+Abs3_5.Mother TestSpace
 
 Detector_box.Copy Absorber4
 Absorber4.Position {+5-X_CZT_module_in_PP_box} {Y_CZT_module_in_PP_box} {+Z_AlBox_Dim-AlBox_Thickness-Z_PP_box_DIM}

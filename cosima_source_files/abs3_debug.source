@@ -1,7 +1,7 @@
 #356 keV simulation of experiment
 
 Version         2
-Geometry        $(MEGALIB)/mycodes/lab_setup/experiment_al_box.geo.setup
+Geometry        $(MEGALIB)/mycodes/lab_setup/abs3_debug.geo.setup
 
 
 PhysicsListEM            Standard
@@ -10,11 +10,11 @@ StoreSimulationInfo      all
 DiscretizeHits true
 
 Run ExpSim
-ExpSim.FileName bpsim_confirm_200keV_1e6
+ExpSim.FileName abs3_debug_122keV_1e7
 ExpSim.Time   1
 #20
 ExpSim.Source mono356
 mono356.ParticleType    1
 mono356.Beam            ConeBeam {29.0} {0} {0} -29 -0 {-11.975-{0}} 3.9881
-mono356.Spectrum        Mono 200
-mono356.Flux            1e6
+mono356.Spectrum        Mono 122
+mono356.Flux            1e7
