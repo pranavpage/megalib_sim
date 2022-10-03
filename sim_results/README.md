@@ -1,4 +1,5 @@
 # Back-projection code pipeline
+The following document explains the flow for the back-projection pipeline
 ## Simulating events using MEGAlib
 ### Setting up the experiment 
 The experiment setup is done in a `.geo.setup` file, with helper `.geo` files for the CZT module and the CZT module box. The setup can be viewed by running the file using `geomega`. 
