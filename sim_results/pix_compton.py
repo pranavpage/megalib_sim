@@ -21,16 +21,6 @@ print(Sca)
 Abs1=Det(np.array([-26.975, 0, -12.847]), Y_global, Z_global, "abs1")
 Abs2=Det(np.array([-26.975, 0, 12.847]), Y_global, Z_global, "abs2")
 Abs3=Det(np.array([-5, 0, 11.975]), X_global, Y_global, "abs3")
-#10.8125
-'''Abs3_0=Det(np.array([-5+2*1.97, 0, 11.975]), X_global, Y_global, "abs3_0")
-Abs3_1=Det(np.array([-5, 0, 11.975]), X_global, Y_global, "abs3_1")
-Abs3_2=Det(np.array([-5-2*1.97, 0, 11.975]), X_global, Y_global, "abs3_2")
-Abs3_3=Det(np.array([-5-4*1.97, 0, 11.975]), X_global, Y_global, "abs3_3")
-Abs3_4=Det(np.array([-5-6*1.97, 0, 11.975]), X_global, Y_global, "abs3_4")
-Abs3_5=Det(np.array([-5-8*1.97, 0, 11.975]), X_global, Y_global, "abs3_5")
-'''
-#Abs3_3=Det(np.array([-5-1.97, 0+1.97, 10.8125]), X_global, Y_global, "abs3_3")
-#Abs3_4=Det(np.array([-5-1.97, 0-1.97, 10.8125]), X_global, Y_global, "abs3_4")
 Abs4=Det(np.array([5, 0, 11.975]), X_global, Y_global, "abs4")
 Abs5=Det(np.array([-5, -11.975, 0]), X_global, Z_global, "abs5")
 Abs6=Det(np.array([-5, 11.975, 0]), X_global, Z_global, "abs6")
@@ -38,7 +28,6 @@ all_dets=[Abs1,Abs2,Abs3,Abs4,Abs5,Abs6]
 det_nums=[1,2,3,4,5,6]
 det_list=[all_dets[i-1] for i in det_nums]
 error_count=0
-#det_list=[Abs3_0, Abs3_1, Abs3_2, Abs3_3, Abs3_4, Abs3_5, Abs4]
 for det in det_list:
     print(det)
 diff_count=0

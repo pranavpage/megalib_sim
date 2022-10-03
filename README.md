@@ -1,7 +1,5 @@
-
-# To be done
-- Accurately modelling the housing of the ME Box
-- Support structure : Important or not?
-- Disparity in Pitch in the X direction (with 4 modules)
-- Material covering the CZT module to be confirmed (PMT Plastic as of now)
-- Connector material to be confirmed (Al as of now)
+### Tasks to be done
+1. Clean function for backprojection, separate from post-processing
+2. sub-configurations and energies
+3. `.txt` logs
+4. Gaussian fit

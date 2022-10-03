@@ -44,3 +44,10 @@ for high number of Compton events
 6. Abs3 : 195
 7. Abs4 : 666
 8. Abs5 : 796
+## Chosen subconfigs : 
+1. Abs5, Abs6 : 1e6 
+2. Abs5, Abs4 : 1e6
+3. Abs2, Abs4 : 1e6
+4. Abs1, Abs2 : 1e6
+5. Abs2, Abs4, Abs5 : 1e6
+6. Abs4, Abs5, Abs6 : 1e6
